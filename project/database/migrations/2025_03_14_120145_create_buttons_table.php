@@ -11,9 +11,11 @@ return new class extends Migration
     {
         Schema::create('buttons', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('link')->nullable();
-            $table->string('color')->default('#000000');
+            $table->string('color')->default('#000000')->nullable();
+            $table->enum('position', range(1, 9))->unique();
+            $table->unique('position');
             $table->timestamps();
         });
     }
